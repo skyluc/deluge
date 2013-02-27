@@ -17,7 +17,9 @@ object ProjectBuild extends Build {
     ),
     sourceDirectories in Compile <<= baseDirectory ( (base : File) => Seq( base / "src" / "main" / "scala")),
     sourceDirectories in Test <<= baseDirectory ( (base : File) => Seq( base / "src" / "test" / "scala")),
-    mainClass := Some("org.skyluc.deluge.Server")
+    mainClass := Some("org.skyluc.deluge.Server"),
+    fork in run := true,
+    connectInput in run := true
   )
 
   lazy val project = Project ("deluge", file("."), settings = baseSettings)

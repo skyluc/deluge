@@ -11,9 +11,9 @@ class ServerActor extends Actor {
 
   val log = Logging(context.system, this)
   
-  val router = context.system.actorOf(Props[RouterActor])
+  val router = context.system.actorOf(Props[RouterActor], name = "router")
 
-  def receive = LoggingReceive {
+  def receive = {
     case request: HttpRequest =>
       router forward request
     case _: Closed =>
