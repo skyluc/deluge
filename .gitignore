@@ -1,6 +1,7 @@
 *.class
 *.log
 
+
 # sbt specific
 dist/*
 target/
@@ -10,4 +11,6 @@ project/boot/
 project/plugins/project/
 
 # Scala-IDE specific
-.scala_dependencies
+.cache
+.classpath
+.project
