@@ -4,6 +4,7 @@ import akka.actor.Actor
 import akka.actor.ActorSystem
 import akka.actor.Props
 import akka.actor.actorRef2Scala
+import akka.event.Logging
 import spray.http.HttpRequest
 import spray.http.HttpResponse
 
@@ -19,8 +20,13 @@ object GithubActor {
 
 class GithubActor extends Actor {
   
+  private val log = Logging(context.system, this)
+
   override def receive = {
-    case _: HttpRequest =>
+    case request: HttpRequest =>
+      
+      log.debug(request.entity.asString)
+      
       sender ! HttpResponse()
   }
 
