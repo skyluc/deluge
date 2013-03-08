@@ -7,6 +7,7 @@ import akka.actor.actorRef2Scala
 import akka.event.Logging
 import spray.http.HttpRequest
 import spray.http.HttpResponse
+import java.net.URLDecoder
 
 object GithubActor {
   
@@ -25,7 +26,8 @@ class GithubActor extends Actor {
   override def receive = {
     case request: HttpRequest =>
       
-      log.debug(request.entity.asString)
+      
+      log.debug(URLDecoder.decode(request.entity.asString, "UTF-8"))
       
       sender ! HttpResponse()
   }
