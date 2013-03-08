@@ -8,6 +8,8 @@ object Server extends SprayCanHttpServerApp {
 
   def main(args: Array[String]) {
     val handler = system.actorOf(Props[ServerActor], name = "server")
+    GithubActor.init(system)
+
     newHttpServer(handler) ! Bind(interface = "0.0.0.0", port = 4702)
 
     waitForClosedStdIn()
